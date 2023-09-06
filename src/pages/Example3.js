@@ -13,27 +13,35 @@ ul{
 
   
 }
-
-
 `
 
 
 function Example3() {
-  let [data,setData] = useState(Example3_)
+  const [data,setData] = useState(Example3_);
   console.log(data)
-  let [animal, setAnimal] = useState("전체")
+  const [animal, setAnimal] = useState("전체");
+  const [gender, setGender] = useState("전체");
 
   const dataAnimal = data.filter(e =>{
-    if(animal === "전체"){      
-      return e.animal
 
-    }else{
-      return e.animal === animal
+    let isAnimal = animal === "전체" || e.animal === animal;
+    let isGender = gender === "전체" || e.gender === animal;
+    return isAnimal && isGender
 
-    }
+
+
+    // return (animal === "전체" ? e.animal : e.animal ===animal);
+    // if(animal === "전체"){      
+    //   return e.animal
+
+    // }else{
+    //   return e.animal === animal
+
+    // }
   })
 
   const FilterAnimal = [...new Set(data.map(e => e.animal))];
+  const FilterGender = [...new Set(data.map(e => e.gender))];
   console.log(FilterAnimal)
 
   return (
@@ -42,15 +50,18 @@ function Example3() {
 
     <ul>
       
-     <li onClick={()=>setAnimal("전체")}>전체</li>
+     <li  onClick={()=>setAnimal("전체")}>전체</li>
+     {
+      FilterGender.map((e,i)=>{
+        return (
+          <li key={i} onClick={()=>{setGender(e)}}>{e}</li>
+        )
+      })
+     }
     {FilterAnimal.map((e,i)=>{
       return(
         
-        <li onClick={()=>{setAnimal(e)}}>{e}</li>
-
-
-        
-        
+        <li key={i} onClick={()=>{setAnimal(e)}}>{e}</li>
         )
     })}
     </ul>
@@ -61,7 +72,8 @@ function Example3() {
           return(
             <>           
               
-            <p key={i}>{el.gender},{el.height}CM</p>
+              
+            <p key={i}>{el.gender} - {el.height}CM</p>
             
             
             </>
