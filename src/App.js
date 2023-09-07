@@ -19,14 +19,18 @@ function App() {
     colors:{
       Primary : "pink",
       Secondary : "orangered",
-      BgColor : "#e9f1f6"
+      BgColor : "#e9f1f6",
+      Color : "#000",
+      ContentBg:"#fff"
     }
   }
   const dark = {
     colors:{
       Primary : "#272929",
       Secondary : "white",
-      BgColor : "#333"
+      BgColor : "#333",
+      Color : "#e9e9e9",
+      ContentBg:"#272929"
 
     }
   }
